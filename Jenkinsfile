@@ -17,5 +17,14 @@ pipeline {
                 sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
             }
         }
+        stage('Push to docker hub') {
+            steps {
+                   withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubpasswd')]){
+                        sh "docker login -u sreejitheyne -p ${dockerhubpasswd}"
+                    }
+                        sh 'docker push sreejitheyne/pythonweb'
+                }
+            }
+        }
     }
-}
+
