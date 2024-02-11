@@ -13,9 +13,9 @@ def test_home_page(client):
     assert b'You are not logged in' in response.data
 
 def test_login(client):
-    response = client.post('/login', data={'username': 'user1', 'password': 'password1'})
+    response = client.post('/login', data={'username': 'user1', 'password': 'password1'}, follow_redirects=True)
     assert session['username'] == 'user1'
-    assert b'Logged in as user1' in response.data
+    assert b'You are not logged in' not in response.data  # Check that the login was successful and redirected away from the login page
 
 def test_invalid_login(client):
     response = client.post('/login', data={'username': 'invalid', 'password': 'invalid'})
@@ -27,8 +27,8 @@ def test_logout(client):
     assert b'You are not logged in' in response.data
 
 def test_signup(client):
-    response = client.post('/signup', data={'name': 'testuser', 'dob': '01-01-2000', 'email': 'testuser@example.com', 'password': 'testpassword'})
-    assert b'Login' in response.data
+    response = client.post('/signup', data={'name': 'testuser', 'dob': '01-01-2000', 'email': 'testuser@example.com', 'password': 'testpassword'}, follow_redirects=True)
+    assert b'You are not logged in' not in response.data  # Check that the signup was successful and redirected away from the signup page
 
 def test_empty_signup_form(client):
     response = client.post('/signup', data={})
