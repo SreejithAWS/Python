@@ -9,7 +9,7 @@ pipeline {
         }
         stage ('Test') {
             steps {
-                sh 'pytest'
+                sh '/var/lib/jenkins/.local/bin/pytest'
             }
         }
     }
