@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    environment {
+        KUBECONFIG = '/home/jith/.kube/config'
+        NAMESPACE = 'default'
+        DEPLOYMENT_FILE = '/var/lib/jenkins/workspace/Pythonwebapp/Deployment.YAML'
+    }
     stages {
         stage ('Build') {
             steps {
@@ -25,6 +30,12 @@ pipeline {
                         sh 'docker push sreejitheyne/pythonweb'
                 }
             }
+        stage('Kubernetes Deployment') {
+            steps {
+                    sh "kubectl --kubeconfig=${KUBECONFIG} --namespace=${NAMESPACE} apply -f ${DEPLOYMENT_FILE}"
+
+                }
         }
     }
+}
 

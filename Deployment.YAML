@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pythonwebapp-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: pythonwebapp
+  template:
+    metadata:
+      labels:
+        app: pythonwebapp
+    spec:
+      containers:
+      - name: pythonwebapp
+        image: sreejitheyne/pythonweb
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pythonwebapp-service
+spec:
+  selector:
+    app: pythonwebapp
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 5000
+  type: LoadBalancer
