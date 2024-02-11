@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage ('Build') {
             steps {
-                sh 'pip install -r requirments.txt'
+                sh 'pip install -r requirments.txt, pytest '
             }
         }
         stage ('Test') {
