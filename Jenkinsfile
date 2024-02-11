@@ -12,5 +12,10 @@ pipeline {
                 sh '/var/lib/jenkins/.local/bin/pytest'
             }
         }
+        stage ('Docker image build') {
+            steps {
+                sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
+            }
+        }
     }
 }
