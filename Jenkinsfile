@@ -4,6 +4,7 @@ pipeline {
         KUBECONFIG = '/home/jith/.kube/config'
         NAMESPACE = 'default'
         DEPLOYMENT_FILE = '/var/lib/jenkins/workspace/Pythonwebapp/Deployment.YAML'
+        DOCKER_HOST = 'tcp://localhost:2375'
     }
     stages {
         stage ('Build') {
