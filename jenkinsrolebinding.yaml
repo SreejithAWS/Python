@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: default
+  name: jenkins-pod-viewer
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: jenkins-pod-viewer-binding
+  namespace: default
+subjects:
+- kind: ServiceAccount
+  name: jenkins
+  namespace: default
+roleRef:
+  kind: Role
+  name: jenkins-pod-viewer
+  apiGroup: rbac.authorization.k8s.io
