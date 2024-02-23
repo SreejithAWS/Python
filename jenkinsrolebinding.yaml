@@ -2,17 +2,17 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   namespace: default
-  name: jenkins-pod-viewer
+  name: jenkins-pod-creator
 rules:
 - apiGroups: [""]
   resources: ["pods"]
-  verbs: ["get", "list", "watch"]
+  verbs: ["get", "list", "watch", "create", "delete"] # Add create and delete verbs for Pod creation and deletion
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: jenkins-pod-viewer-binding
+  name: jenkins-pod-creator-binding
   namespace: default
 subjects:
 - kind: ServiceAccount
@@ -20,5 +20,5 @@ subjects:
   namespace: default
 roleRef:
   kind: Role
-  name: jenkins-pod-viewer
+  name: jenkins-pod-creator
   apiGroup: rbac.authorization.k8s.io
