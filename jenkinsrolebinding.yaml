@@ -16,7 +16,7 @@ metadata:
   namespace: default
 subjects:
 - kind: ServiceAccount
-  name: jenkins
+  name: default
   namespace: default
 roleRef:
   kind: Role
