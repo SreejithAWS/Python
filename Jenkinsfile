@@ -1,8 +1,21 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            label 'my-pod-template-label' // Label of the pod template
+            containerTemplate {
+                name 'jenkins-agent'
+                image 'jenkins/inbound-agent'
+                command '/bin/sh -c'
+                args 'cat'
+                volumeMounts [
+                    mountPath: '/var/run/docker.sock',
+                    name: 'docker-socket'
+                ]
+            }
+        }
+    }
     environment {
-        KUBECONFIG = '/home/jith/.kube/config'
-        NAMESPACE = 'default'
+        NAMESPACE = 'defaultjenkins-agent'
         DEPLOYMENT_FILE = '/var/lib/jenkins/workspace/Pythonwebapp/Deployment.YAML'
         DOCKER_HOST = 'tcp://localhost:2375'
     }
@@ -39,4 +52,3 @@ pipeline {
         }
     }
 }
-
