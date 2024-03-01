@@ -1,7 +1,7 @@
 pipeline {
     agent {
         kubernetes {
-            label 'my-pod-template-label' // Label of the pod template
+            label  'my-pod-template-label'  // Label of the pod template
             defaultContainer 'jnlp'
             yaml """
 apiVersion: v1
