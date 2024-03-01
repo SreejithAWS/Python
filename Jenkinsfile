@@ -1,9 +1,5 @@
 pipeline {
-    agent {
-        kubernetes {
-            label 'my-pod-template-label' // Label of the pod template
-        }
-    }
+    agent any
     environment {
         KUBECONFIG = '/home/jith/.kube/config'
         NAMESPACE = 'default'
