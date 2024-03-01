@@ -2,16 +2,29 @@ pipeline {
     agent {
         kubernetes {
             label 'my-pod-template-label' // Label of the pod template
-            containerTemplate {
-                name 'jenkins-agent'
-                image 'jenkins/inbound-agent'
-                command '/bin/sh -c'
-                args 'cat'
-                volumeMounts [
-                    mountPath: '/var/run/docker.sock',
-                    name: 'docker-socket'
-                ]
-            }
+            defaultContainer 'jnlp'
+            yaml """
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    some-label: 'my-pod-template-label'
+spec:
+  containers:
+  - name: jenkins-agent
+    image: jenkins/inbound-agent
+    command:
+    - '/bin/sh'
+    - '-c'
+    - 'cat'
+    volumeMounts:
+    - name: docker-socket
+      mountPath: /var/run/docker.sock
+  volumes:
+  - name: docker-socket
+    hostPath:
+      path: /var/run/docker.sock
+"""
         }
     }
     environment {
