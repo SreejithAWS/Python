@@ -2,6 +2,7 @@ pipeline {
     agent {
         docker { image 'python:3.13.0a4-slim' 
                  args '-u root:root'
+                 args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     // environment {
@@ -17,8 +18,8 @@ pipeline {
                     sh 'pip install -r requirements.txt' 
                     // Install pytest
                     sh 'pip install pytest'
-                    sh 'apt-get update && apt-get install -y docker.io'
-                    sh 'systemctl docker start'
+                    //sh 'apt-get update && apt-get install -y docker.io'
+                    //sh 'systemctl docker start'
                 }
             }
         }
