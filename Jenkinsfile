@@ -17,8 +17,7 @@ pipeline {
                     sh 'pip install -r requirements.txt' 
                     // Install pytest
                     sh 'pip install pytest'
-                    sh 'apt-get install docker.io
-                    
+                    sh 'apt-get install docker.io'
                 }
             }
         }
