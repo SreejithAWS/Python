@@ -11,9 +11,13 @@ pipeline {
    // }
     stages {
         stage ('Build') {
-            steps {
-                sh 'pip install -r requirements.txt || true' 
-                sh 'pip install pytest'
+             steps {
+                script {
+                    // Install dependencies from requirements.txt
+                    sh 'pip install -r requirements.txt' 
+                    // Install pytest
+                    sh 'pip install pytest'
+                }
             }
         }
         stage ('Test') {
