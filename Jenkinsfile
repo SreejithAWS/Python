@@ -18,6 +18,7 @@ pipeline {
                     // Install pytest
                     sh 'pip install pytest'
                     sh 'apt-get update && apt-get install -y docker.io'
+                    sh 'systemctl docker start'
                 }
             }
         }
