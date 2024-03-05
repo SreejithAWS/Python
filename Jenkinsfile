@@ -3,7 +3,7 @@ pipeline {
         docker { image 'python:3.13.0a4-slim' 
                  args '-u root:root'
                  args '-v /var/run/docker.sock:/var/run/docker.sock'
-                 privileged true
+                 customWorkspace '/var/jenkins_home/workspace'
         }
     }
     // environment {
