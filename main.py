@@ -1,12 +1,11 @@
-# main.py
-
 from flask import Flask, render_template, request, redirect, url_for, session
+import os
 
 app = Flask(__name__)
-app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'  # Securely generate a secret key
+app.secret_key = os.urandom(24)  # Securely generate a secret key
 
 # Dummy user data (for demonstration)
-users = {'user1': {'dob': '01-01-1990', 'email': 'user1@example.com', 'password': 'password1'}}
+users = {'user1@example.com': {'dob': '01-01-1990', 'password': 'password1'}}
 
 @app.route('/')
 def home():
@@ -32,12 +31,10 @@ def login():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        name = request.form.get('name')
-        dob = request.form.get('dob')
         email = request.form.get('email')
         password = request.form.get('password')
-        if name and dob and email and password:
-            users[name] = {'dob': dob, 'email': email, 'password': password}
+        if email and password:
+            users[email] = {'password': password}
             return redirect(url_for('login'))
         else:
             return 'Please fill in all details'
