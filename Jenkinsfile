@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        docker { image 'jenkins/jnlp-slave:latest' 
+        docker { image 'jenkins/jnlp-slave' 
                  args '-u root:root'
         }
     }
