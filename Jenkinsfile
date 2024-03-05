@@ -13,6 +13,8 @@ pipeline {
         stage ('Build') {
              steps {
                 script {
+                    sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
+                    sh 'sudo sh get-docker.sh'
                     // Install dependencies from requirements.txt
                     sh 'pip install -r requirements.txt' 
                     // Install pytest
