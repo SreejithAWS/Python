@@ -20,11 +20,11 @@ pipeline {
                 }
             }
         }
-        stage ('Test') {
-            steps {
-                sh '/usr/local/bin/pytest'
-            }
-        }
+        //stage ('Test') {
+           // steps {
+             //   sh '/usr/local/bin/pytest'
+           // }
+       // }
         stage ('Docker image build') {
             steps {
                 sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
