@@ -17,7 +17,8 @@ pipeline {
                     sh 'pip install -r requirements.txt' 
                     // Install pytest
                     sh 'pip install pytest'
-                    volume '/var/run/docker.sock:/var/run/docker.sock'
+                    sh 'apt-get install docker.io
+                    
                 }
             }
         }
