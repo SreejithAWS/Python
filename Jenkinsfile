@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        docker { image 'python:3.13.0a4-slim' }
+        docker { image 'python:3.13.0a4-slim' 
+                 args '-u root:root'
+        }
     }
     // environment {
      //   NAMESPACE = 'defaultjenkins-agent'
