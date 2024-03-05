@@ -1,37 +1,12 @@
 pipeline {
     agent {
-        kubernetes {
-            label  'my-pod-template-label'  // Label of the pod template
-            defaultContainer 'jnlp'
-            yaml """
-apiVersion: v1
-kind: Pod
-metadata:
-  labels:
-    some-label: 'my-pod-template-label'
-spec:
-  containers:
-  - name: jenkins-agent
-    image: jenkins/inbound-agent
-    command:
-    - '/bin/sh'
-    - '-c'
-    - 'cat'
-    volumeMounts:
-    - name: docker-socket
-      mountPath: /var/run/docker.sock
-  volumes:
-  - name: docker-socket
-    hostPath:
-      path: /var/run/docker.sock
-"""
-        }
+        docker { 'python:3.13.0a4-slim' }
     }
-    environment {
-        NAMESPACE = 'defaultjenkins-agent'
-        DEPLOYMENT_FILE = '/var/lib/jenkins/workspace/Pythonwebapp/Deployment.YAML'
-        DOCKER_HOST = 'tcp://localhost:2375'
-    }
+    // environment {
+     //   NAMESPACE = 'defaultjenkins-agent'
+     //   DEPLOYMENT_FILE = '/var/lib/jenkins/workspace/Pythonwebapp/Deployment.YAML'
+     //   DOCKER_HOST = 'tcp://localhost:2375'
+   // }
     stages {
         stage ('Build') {
             steps {
