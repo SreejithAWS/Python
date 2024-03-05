@@ -13,6 +13,7 @@ pipeline {
         stage ('Build') {
              steps {
                 script {
+                    sh 'install curl'
                     sh 'curl -fsSL https://get.docker.com -o get-docker.sh'
                     sh 'sudo sh get-docker.sh'
                     // Install dependencies from requirements.txt
