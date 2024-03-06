@@ -1,7 +1,6 @@
 pipeline {
     agent {
-        docker { image 'python:3.13.0a4-slim' 
-                 args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
+        docker { image 'sreejitheyne/bimage:latest' 
         }
     }
     // environment {
@@ -20,15 +19,15 @@ pipeline {
                 }
             }
         }
-        //stage ('Test') {
-           // steps {
-             //   sh '/usr/local/bin/pytest'
-           // }
-       // }
+        stage ('Test') {
+             steps {
+                    sh '/usr/local/bin/pytest'
+            }
+        }
         stage ('Docker image build') {
             steps {
                 sh 'docker ps'
-                //sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
+                sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
             }
         }
         stage('Push to docker hub') {
