@@ -1,6 +1,8 @@
 pipeline {
     agent {
-        docker { image 'sreejitheyne/bimage:latest' 
+        docker { 
+            image 'sreejitheyne/bimage:latest' 
+            args '--user root'
         }
     }
     // environment {
