@@ -28,7 +28,7 @@ pipeline {
         stage ('Docker image build') {
             steps {
                 sh 'docker ps'
-                sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
+                //sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
             }
         }
         stage('Push to docker hub') {
