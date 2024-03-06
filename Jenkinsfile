@@ -3,6 +3,7 @@ pipeline {
         docker { 
             image 'sreejitheyne/bimage:latest' 
             args '--user root'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
     // environment {
