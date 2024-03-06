@@ -27,6 +27,7 @@ pipeline {
        // }
         stage ('Docker image build') {
             steps {
+                sh 'docker ps'
                 sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
             }
         }
