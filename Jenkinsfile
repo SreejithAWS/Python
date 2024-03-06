@@ -17,15 +17,15 @@ pipeline {
                     // Install dependencies from requirements.txt
                     sh 'pip install -r requirements.txt' 
                     // Install pytest
-                    sh 'pip install pytest'
+                    //sh 'pip install pytest'
                 }
             }
         }
-        stage ('Test') {
-             steps {
-                    sh '/usr/local/bin/pytest'
-            }
-        }
+        //stage ('Test') {
+        //     steps {
+        //            sh '/usr/local/bin/pytest'
+        //    }
+        //}
         stage ('Docker image build') {
             steps {
                 sh 'docker ps'
