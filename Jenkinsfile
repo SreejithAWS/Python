@@ -28,7 +28,6 @@ pipeline {
         //}
         stage ('Docker image build') {
             steps {
-                sh 'service docker start && docker ps'
                 sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
             }
         }
