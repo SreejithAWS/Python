@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: pythonwebapp-deployment
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: pythonwebapp
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: pythonwebapp
-        image: sreejitheyne/pythonweb
+        image: sreejitheyne/pythonweb:latest
         ports:
         - containerPort: 5000
 ---
