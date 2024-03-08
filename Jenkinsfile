@@ -23,9 +23,8 @@ pipeline {
             }
         stage('Kubernetes Deployment') {
             steps {
-                    sh "kubectl --kubeconfig=${KUBECONFIG} --namespace=${NAMESPACE} apply -f ${DEPLOYMENT_FILE}"
-
-                }
+                    sh "kubectl apply -f deployment.yaml" 
+                   }
         }
     }
 }
