@@ -15,8 +15,8 @@ pipeline {
         }
         stage('Push to docker hub') {
             steps {
-                   withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhubpasswd')]){
-                        sh "docker login -u sreejitheyne -p ${dockerhubpasswd}"
+                   withCredentials([string(credentialsId: 'sreejitheyne', variable: 'dockerhub')]){
+                        sh "docker login -u sreejitheyne -p ${dockerhub}"
                     }
                         sh 'docker push sreejitheyne/pythonweb'
                 }
