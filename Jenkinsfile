@@ -1,35 +1,16 @@
 pipeline {
-    agent {
-        docker { 
-            image 'sreejitheyne/bimage:latest' 
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
-            args '--user root'
-        }
-    }
-    // environment {
-     //   NAMESPACE = 'defaultjenkins-agent'
-     //   DEPLOYMENT_FILE = '/var/lib/jenkins/workspace/Pythonwebapp/Deployment.YAML'
-     //   DOCKER_HOST = 'tcp://localhost:2375'
-   // }
+    agent any
     stages {
         stage ('Build') {
              steps {
                 script {
-                    // Install dependencies from requirements.txt
                     sh 'pip install -r requirements.txt' 
-                    // Install pytest
-                    //sh 'pip install pytest'
                 }
             }
         }
-        //stage ('Test') {
-        //     steps {
-        //            sh '/usr/local/bin/pytest'
-        //    }
-        //}
         stage ('Docker image build') {
             steps {
-                sh 'docker build -t sreejitheyne/pythonweb -f Dockerfile . '
+                sh 'docker build -t sreejitheyne/pythonweb  . '
             }
         }
         stage('Push to docker hub') {
